@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            background-color: wheat;
+        }
+        .box-main {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .box {
+            width: 300px;
+            background-color: whitesmoke;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            border: 1px solid black;
+            justify-content: space-between;
+        }
+
+        .content{
+            margin: 10px 0;
+        }
+
+        .img-box{
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: all 0.5s;
+        }
+
+        .box:hover .img-box img{
+            transform: scale(1.1);
+            border-radius: 8px;
+        }
+
+        a,
+        a:hover {
+            text-decoration: none !important;
+            color: white !important;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-transform: capitalize;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .a_tag,
+        .a_tag:hover {
+            color: blueviolet !important;
+            background-color: aqua;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Kindle Library</h1>
+            <a class="a_tag rounded" href="/add">add a new Book</a>
+            <div class="col-xl-12 box-main m-2">
+                <% record.map((val,i)=> {i++ %>
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="<%= val.image %>" width="100%">
+                        </div>
+                        <div class="content">
+                            <h2>
+                                <%= val.name %>
+                            </h2>
+                            <h6 class="mb-1">
+                                Price : <sapn class="text-secondary">Rs. <%= val.price %></sapn>
+                            </h6>
+                            <h6 class="mb-1">
+                                Pages : <span class="text-danger"><%= val.pages %></span>
+                            </h6>
+                            <h6>
+                                Author : <span class="text-info"><%= val.authore %></span>
+                            </h6>
+                        </div>
+                        <div class="d-flex">
+                            <button class="btn-primary rounded m-2">
+                                <a href="/editData?id=<%= val.id %>">edit</a>
+                            </button>
+                            <button class="btn-danger rounded m-2">
+                                <a href="/deleteData?id=<%= val.id %>">delete</a>
+                            </button>
+                        </div>
+
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
